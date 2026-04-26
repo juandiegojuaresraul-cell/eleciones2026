@@ -1,0 +1,229 @@
+/* ============================================================
+   ESTILO PORTAL INTEGRADO: NEBULOSA & CRISTAL 2026
+   Arquitectura: Juan Diego Juares | SENATI / UCV
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap');
+
+:root {
+    --bg-deep: #2a3b8d;        /* Azul base elegante */
+    --card-bg: rgba(20, 25, 40, 0.7); /* Slate profundo transparente */
+    --neon-cyan: #f3f7f7;      /* Blanco glaciar */
+    --neon-purple: #e2e6dd;    /* Crema suave */
+    --neon-green: #4ed98d;     /* Verde neón para contraste */
+    --text-white: #f8fafc;
+    --text-dim: #cbd5e1;
+    --primary-blur: blur(16px);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-deep);
+    /* Fondo con gradientes de "Nebulosa" mejorados */
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(78, 217, 141, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(34, 211, 238, 0.1) 0%, transparent 40%);
+    background-attachment: fixed;
+    color: var(--text-white);
+    margin: 0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- BARRA DE NAVEGACIÓN (NAVBAR) --- */
+.navbar {
+    background: rgba(10, 15, 30, 0.8);
+    backdrop-filter: var(--primary-blur);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo { 
+    font-size: 1.6rem; 
+    font-weight: 900; 
+    color: white; 
+    margin: 0;
+    letter-spacing: 1px;
+}
+.logo span { color: var(--neon-green); }
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-weight: 400;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.nav-links a:hover { color: var(--neon-green); }
+
+/* DROPDOWN MENU */
+.dropdown { position: relative; }
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--card-bg);
+    backdrop-filter: var(--primary-blur);
+    list-style: none;
+    padding: 15px 0;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: none;
+    min-width: 200px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.submenu li a { padding: 10px 25px; display: block; width: 100%; }
+.dropdown:hover .submenu { display: block; animation: fadeIn 0.3s ease; }
+
+.btn-reg {
+    background: var(--neon-green);
+    color: var(--bg-deep) !important;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 700 !important;
+}
+
+/* --- ENCABEZADO PANEL --- */
+.main-header {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.main-header h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- QUICK LINKS (CARDS PEQUEÑAS) --- */
+.quick-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card-link {
+    background: var(--card-bg);
+    backdrop-filter: var(--primary-blur);
+    border-radius: 30px;
+    padding: 40px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.5s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+.card-link:hover {
+    transform: translateY(-15px) rotateX(5deg);
+    border-color: var(--neon-green);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(78, 217, 141, 0.2);
+}
+
+.icon { font-size: 3.5rem; margin-bottom: 15px; }
+
+/* --- SECCIÓN DESTACADOS (CANDIDATOS FULL) --- */
+.destacados { padding: 80px 20px; }
+.section-title { text-align: center; margin-bottom: 50px; font-size: 2.2rem; }
+
+.grid-destacados {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.candidato-full-card {
+    background: var(--card-bg);
+    border-radius: 40px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.4s;
+}
+
+.candidato-full-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    filter: brightness(0.9);
+}
+
+.card-header {
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h2 { font-size: 1.4rem; margin: 0; color: var(--neon-cyan); }
+
+.badge {
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.fujimori { background: #f59e0b; }
+.aliaga { background: #3b82f6; }
+.sanchez { background: #ef4444; }
+
+.card-body { padding: 30px; }
+.card-body h3 { color: var(--neon-green); font-size: 1.1rem; margin-bottom: 15px; }
+.card-body ul { padding-left: 20px; color: var(--text-dim); font-size: 0.9rem; }
+.card-body li { margin-bottom: 10px; }
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-dim);
+    font-size: 0.85rem;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .nav-links { display: none; } /* En producción aquí iría un menú hamburguesa */
+    .grid-destacados { grid-template-columns: 1fr; }
+    .main-header h2 { font-size: 2rem; }
+}

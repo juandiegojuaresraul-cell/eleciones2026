@@ -1,0 +1,174 @@
+/* ============================================================
+   DISEÑO CYBER-CARD ULTIMATE 2026 - JUAN DIEGO
+   Ingeniería de Software | High-Performance UI
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&display=swap');
+
+:root {
+    --bg-dark: #2b417c;         /* Negro profundo espacial */
+    --card-bg: rgba(17, 24, 39, 0.7); 
+    --neon-cyan: #a5bdc1;
+    --neon-violet: #8b5cf6;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-silver: #e2e8f0;
+}
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    /* Efecto de malla de ingeniería al fondo */
+    background-image: 
+        linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-silver);
+    margin: 0;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- OPTIMIZACIÓN DEL GRID --- */
+table {
+    display: block;
+    border: none !important;
+}
+
+thead { display: none; }
+
+tbody {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    width: 100%;
+}
+
+/* --- LA TARJETA (ARQUITECTURA DE CAPAS) --- */
+tr {
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 40px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+/* Brillo periférico al acercar el mouse */
+tr:hover {
+    transform: translateY(-20px) scale(1.03);
+    border-color: var(--neon-cyan);
+    box-shadow: 
+        0 30px 60px -12px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(34, 211, 238, 0.15);
+}
+
+/* --- FOTO CON OVERLAY DINÁMICO --- */
+td:nth-child(3) {
+    order: -1;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Overlay para que el texto resalte */
+td:nth-child(3)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, var(--bg-dark), transparent);
+    opacity: 0.8;
+}
+
+td img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: grayscale(20%) brightness(90%);
+}
+
+tr:hover td img {
+    transform: scale(1.2);
+    filter: grayscale(0%) brightness(105%);
+}
+
+/* --- TIPOGRAFÍA DE ALTA PRECISIÓN --- */
+/* Nombre con efecto Chrome */
+td:nth-child(1) {
+    display: block;
+    padding: 25px 25px 5px 25px;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-align: center;
+    background: linear-gradient(135deg, #fff 30%, var(--neon-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: 2;
+}
+
+/* Badge del Partido */
+td:nth-child(2) {
+    display: block;
+    text-align: center;
+    padding: 0 20px 20px 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--neon-violet);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    z-index: 2;
+}
+
+/* CV con lectura optimizada */
+td:nth-child(4) {
+    display: block;
+    padding: 0 35px 40px 35px;
+    font-size: 0.95rem;
+    color: #94a3b8;
+    line-height: 1.8;
+    text-align: center;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+/* Reset de celdas */
+td {
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Animación de carga para las tarjetas */
+@keyframes cardEntrance {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+tbody tr {
+    animation: cardEntrance 0.8s ease backwards;
+}
+
+/* Retraso en animación para efecto de cascada */
+tbody tr:nth-child(1) { animation-delay: 0.1s; }
+tbody tr:nth-child(2) { animation-delay: 0.2s; }
+tbody tr:nth-child(3) { animation-delay: 0.3s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    tbody { grid-template-columns: 1fr; }
+    body { padding: 40px 15px; }
+}
